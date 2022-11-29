@@ -32,9 +32,13 @@ export default {
 
 <style scoped>
 #imgbox {
+  /* margin: auto; */
+  height: 100%;
+  width: 100%;
   /*height: 500px;*/
 }
 #imgbox img {
+  object-fit: contain;
   height: 100%;
   width: 100%;
 

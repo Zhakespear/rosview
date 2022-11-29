@@ -208,7 +208,8 @@ export default {
   color: white;
   margin: 10px;
   /*resize: both;*/
-  width: 650px;
+  width: calc(50% - 20px);
+  height: calc(50% - 20px);
   position: relative;
 }
 

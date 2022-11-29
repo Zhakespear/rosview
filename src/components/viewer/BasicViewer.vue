@@ -1,5 +1,5 @@
 <template>
-  <el-card class="box-card" shadow="always" :body-style="{padding:'0px'}">
+  <el-card class="box-card" shadow="always" :body-style="{padding:'0px',height:'100%',display:'flex',flexFlow:'column'}">
     <div class="card-header">
       <div class="titlename">{{topic.name}}</div>
       <span class="buttons">
@@ -90,6 +90,7 @@ export default {
       compressflag: [],
       //before expand backup
       backup:[],
+      
 
     }
   },
@@ -267,6 +268,7 @@ export default {
 }
 .card-body {
   background: #404040;
+  height: 100%;
 
 }
 .buttons span {

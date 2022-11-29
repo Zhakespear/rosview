@@ -13,6 +13,9 @@ export default {
       layer:null,
       message:null,
       marker:null,
+
+      // screenWidth: document.body.clientWidth, // 屏幕宽度
+		  screenHeight: document.body.clientHeight, // 屏幕高度
     }
   },
   methods: {
@@ -69,6 +72,8 @@ export default {
 
   },
   mounted() {
+    // let mapdom = document.getElementById("map");
+    // mapdom.style.
     this.initmap()
     setTimeout(() => {
       this.map.animateTo({
@@ -94,7 +99,8 @@ export default {
 
 <style scoped>
 #map {
-  height: 600px;
+  /* height: 600px; */
+  height: 100%;
 
 }
 
