@@ -22,7 +22,6 @@ export default {
   },
   mounted() {
     this.$refs.img.src = "http://localhost:8081/stream?topic=" + this.topicname
-
   },
   methods: {
 

@@ -44,6 +44,8 @@
       <ImageViewer ref="img" :topicname="topic.name"
                    v-if="switchviewer==='Image'"></ImageViewer>
 
+      <StatusViewer ref="status" v-if="switchviewer==='vehicle_status'"></StatusViewer>
+
     </div>
 
   </el-card>
@@ -56,12 +58,14 @@ import * as ROS3D from "ros3d";
 import MapViewer from "@/components/viewer/MapViewer";
 import ThreeViewer from "@/components/viewer/ThreeViewer";
 import ImageViewer from "@/components/viewer/ImageViewer";
+import StatusViewer from "@/components/viewer/StatusViewer"
 
 export default {
   components: {
     MapViewer,
     ThreeViewer,
     ImageViewer,
+    StatusViewer,
   },
   name: "BasicViewer",
   props: {
@@ -153,7 +157,10 @@ export default {
           this.switchviewer = this.viewertype
           // this.currenttopic.subscribe(this.ondata)
           break
-
+        case "vehicle_status":
+          this.switchviewer = this.viewertype
+          this.currenttopic.subscribe(this.ondata)
+          break
         default: {
           this.switchviewer = "DataRaw"
           this.viewertype = "DataRaw"
@@ -188,7 +195,6 @@ export default {
       });
     },
     ondata(msg) {
-
       switch (this.switchviewer) {
         case "NavSatFix":
           this.$refs.map.updatelocation(msg)
@@ -197,7 +203,8 @@ export default {
         case "PointCloud2":
           this.$refs.geo.updatepoints(msg)
           break
-        case "Image":
+        case "vehicle_status":
+          this.$refs.status.onstatus(msg)
           break
         default:
         // case "DataRaw":
@@ -232,7 +239,6 @@ export default {
   beforeUnmount() {
     if(this.topic.type!=='sensor_msgs/Image') {
       this.currenttopic.unsubscribe(this.ondata)
-
     }
 
   },
